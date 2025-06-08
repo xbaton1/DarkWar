@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dark War RPG</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #eee;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+    .stats {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #f39c12;
+      color: #000;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      margin: 10px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>⚔️ Dark War</h1>
+  <div class="stats">
+    <p>🩸 HP: <span id="hp">100</span></p>
+    <p>⭐ Level: <span id="level">1</span></p>
+    <p>⚔️ Power: <span id="power">10</span></p>
+    <p>🪙 Coins: <span id="coins">0</span></p>
+  </div>
+  <button onclick="gainCoins()">💰 Gain Coins</button>
+  <button onclick="gainPower()">⚔️ Train Power</button>
+  <button onclick="takeDamage()">🩸 Take Damage</button>
+  <button onclick="levelUp()">⭐ Level Up</button>
+
+  <script>
+    let hp = 100;
+    let level = 1;
+    let power = 10;
+    let coins = 0;
+
+    function updateStats() {
+      document.getElementById('hp').textContent = hp;
+      document.getElementById('level').textContent = level;
+      document.getElementById('power').textContent = power;
+      document.getElementById('coins').textContent = coins;
+    }
+
+    function gainCoins() {
+      coins += 10;
+      updateStats();
+    }
+
+    function gainPower() {
+      power += 2;
+      coins -= 5;
+      updateStats();
+    }
+
+    function takeDamage() {
+      hp -= 20;
+      if (hp < 0) hp = 0;
+      updateStats();
+    }
+
+    function levelUp() {
+      if (coins >= 50) {
+        level += 1;
+        coins -= 50;
+        hp = 100;
+        power += 5;
+        updateStats();
+      } else {
+        alert("Not enough coins to level up!");
+      }
+    }
+
+    updateStats();
+  </script>
+</body>
+</html>
